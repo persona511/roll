@@ -1,26 +1,23 @@
 <!DOCTYPE html>
-<html lang="ru" >
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Колесо удачи</title>
-  <!-- используем всю ширину экрана -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- подключаем стили -->
-  <link rel="stylesheet" href="style.css">
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="roll.css">
 </head>
 <body>
-<!-- главный блок -->
-<div class="deal-wheel">
-  <!-- блок с призами -->
-  <ul class="spinner"></ul>
-  <!-- язычок барабана -->
-  <div class="ticker"></div>
-  <!-- кнопка -->
-  <button class="btn-spin">Испытай удачу</button>
-</div>
-  <!-- подключаем скрипт -->
-  <script  src="script.js"></script>
+    <main>
+        <button onclick="" id="spin">Spin</button>
+        <button onclick="" id="freecash">min 10 max 1000</button>
+        <span class="ticker"></span>
+        <ul class="container">
+            <div class="one re">0x</div>
+            <div class="two re">3x</div>
+        </ul>
+    </main> 
 
-</body>
+    <script src="roll.js"></script>
+</body> 
 </html>
