@@ -1,76 +1,97 @@
-/* делаем везде так, чтобы свойства width и height задавали не размеры контента, а размеры блока */
 * {
-  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
 }
-
-/* общие настройки страницы */
 body {
-  /* подключаем сетку */
-  display: grid;
-  /* ставим всё по центру */
-  place-items: center;
-  /* если что-то не помещается на своё место — скрываем то, что не поместилось */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  background-image: url(/roll/fon.jpg);
   overflow: hidden;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
 }
 
-/* общий блок для всех элементов */
-.deal-wheel {
-  /* задаём переменные блока, внутри которого всё будет рисоваться */
-  /* размеры колеса */
-  --size: clamp(250px, 80vmin, 700px);
-  /* clamp — функция CSS, которая задаёт три размера: минимальное, предпочтительное и максимальное. В данном случае мы хотим, чтобы колесо было не меньше 250 пикселей, не больше 700 пикселей, но в идеале — 80% от безопасно малой высоты окна браузера */
-  /* настройки яркости и заливки фона секторов. Нам понадобится описать поведение градиента, это у нас делается через много переменных */
-  --lg-hs: 0 3%;
-  --lg-stop: 50%;
-  --lg: linear-gradient(
-      hsl(var(--lg-hs) 0%) 0 var(--lg-stop),
-      hsl(var(--lg-hs) 20%) var(--lg-stop) 100%
-    );
-  /* добавляем позиционирование относительно других элементов */
-  position: relative;
-  /* подключаем стандартную CSS-сетку */
-  display: grid;
-  grid-gap: calc(var(--size) / 20);
-  /* выравниваем содержимое блока по центру */
+main{
+  display: flex;
+  gap: 0;
+  justify-content: center;
   align-items: center;
-  /* задаём имена областей внутри сетки — в CSS теперь можно прямо назвать эти области */
-  grid-template-areas:
-    "spinner"
-    "trigger";
-  /* устанавливаем размер шрифта */
-  font-size: calc(var(--size) / 21);
 }
 
-/* всё, что относится ко внутренним элементам главного блока, будет находиться в области сетки с названием spinner */
-.deal-wheel > * {
-  grid-area: spinner;
-}
 
-/* сам блок и кнопка будут находиться в области сетки с названием trigger и будут выровнены по центру */
-.deal-wheel .btn-spin {
-  grid-area: trigger;
-  justify-self: center;
-}
 
-/* сектор колеса */
-.spinner {
-  /* добавляем относительное позиционирование */
+.container {
+  width: 600px;
+  height: 600px;
+  background-color: #ccc;
+  border-radius: 50%;
+  border: 15px solid #dde;
   position: relative;
-  /* подключаем сетку */
-  display: grid;
-  /* выравниваем всё по центру */
+  overflow: hidden;
+  transition: 10s;
+  transform: rotate(0deg);
+}
+.container div {
+  height: 50%;
+  width: 342px;
+  transform-origin: bottom;
+  text-align: center;
+  display: flex;
   align-items: center;
-  /* добавляем элемент в сетку */
-  grid-template-areas: "spinner";
-  /* устанавливаем размеры */
-  width: var(--size);
-  height: var(--size);
-  /* поворачиваем элемент  */
-  transform: rotate(calc(var(--rotate, 25) * 1deg));
-  /* рисуем круглую обводку, а всё, что не поместится, — будет скрыто за кругом */
-  border-radius: 50%
-};
-/* всё, что внутри этого блока, будет находиться в области сетки с названием spinner */
-.spinner * {
-  grid-area: spinner;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: sans-serif;
+  color: #fff;
+  left: 135px;
+}
+
+.container .one {
+  background-color: #1dc717;
+  width: 100%;
+}
+.container .two {
+  background-color: #310ece;
+  transform: rotate(360deg);
+  width: 100%;
+
+}
+
+.arrow {
+  bottom: 43%;
+  left: 31%;
+  transform: translateX(-50%);
+  transform: rotate(270deg);
+  color: rgb(255, 0, 0);
+  z-index: 11;
+}
+.arrow::before {
+  content: "\1f817";
+  font-size: 100px;
+}
+#spin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  background-color: #e2e2e2;
+  text-transform: uppercase;
+  border: 8px solid #fff;
+  font-weight: bold;
+  font-size: 20px;
+  color: #000000;
+  width: 80px;
+  height: 80px;
+  font-family: sans-serif;
+  border-radius: 50%;
+  cursor: pointer;
+  outline: none;
+  letter-spacing: 1px;
 }
